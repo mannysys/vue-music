@@ -50,19 +50,20 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 5、在安装2个依赖包
 
-	```
-	babel-runtime 	 对一些es语法做一些转义
-	fastclick 			 解决移动端点击触发300ms毫秒的延迟问题
-	babel-polyfill 	 对一些ES6的api，比如像promise做个转义
-  ```
+``` bash
+# 对一些es语法做一些转义
+babel-runtime
 
-	```
-	在mail.js 入口文件中引入以下2个包
-	import 'babel-polyfill'
-	import fastclick from 'fastclick'
-  ```
-	
-	```
-	配置下写入DOM节点中去
-	fastclick.attach(document.body)
-	```
+# 解决移动端点击触发300ms毫秒的延迟问题
+fastclick
+
+# 对一些ES6的api，比如像promise做个转义
+babel-polyfill
+
+# 在mail.js 入口文件中引入以下2个包
+import 'babel-polyfill'
+import fastclick from 'fastclick'
+
+# 配置下写入DOM节点中去
+fastclick.attach(document.body)
+```
