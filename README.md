@@ -60,4 +60,5 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 	import fastclick from 'fastclick'
 	配置下写入DOM节点中去
 	fastclick.attach(document.body)
+
 	```
