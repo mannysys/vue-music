@@ -42,14 +42,16 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 4、在 index.html 设置移动端都不标签
 
-  ``` bash
-	<meta name="viewport"
+```
+<meta name="viewport"
 				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-	```
+```
+
 
 > 5、在安装2个依赖包
 
-  ``` bash
+
+  ```
 	babel-runtime 	对一些es语法做一些转义
 	fastclick 			解决移动端点击触发300ms毫秒的延迟问题
 	babel-polyfill 	对一些ES6的api，比如像promise做个转义
