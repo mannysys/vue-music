@@ -33,19 +33,19 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 3、使用绝对路径(import 'common/stylus/index.styl'), 就需要做别名配置, 修改 build 目录下webpack.base.conf.js 中别名配置
 
-	``` bash
+  ``` bash
 	alias: {
 		'src': resolve('src'),
 		'common': resolve('src/common')
 	}
-	```
+  ```
 
 > 4、在 index.html 设置移动端都不标签
 
   ``` bash
 	<meta name="viewport"
 				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-				```
+	```
 
 > 5、在安装2个依赖包
 
