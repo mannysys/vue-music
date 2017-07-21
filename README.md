@@ -67,3 +67,10 @@ import fastclick from 'fastclick'
 # 配置下写入DOM节点中去
 fastclick.attach(document.body)
 ```
+
+> 6、安装jsonp，做一个jsonp封装
+
+``` bash
+#指定版本安装jsonp
+"jsonp": "0.2.1"
+```

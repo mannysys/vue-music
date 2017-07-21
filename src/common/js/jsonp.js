@@ -1,3 +1,7 @@
+/**
+ * 封装成jsonp Promise
+ * data是携带参数数据，拼装到 url地址上
+ */
 import originJsonp from 'jsonp'
 
 export default function jsonp(url, data, option) {
@@ -13,7 +17,10 @@ export default function jsonp(url, data, option) {
     })
   })
 }
-
+/**
+ * 将参数拼接成 url格式（xx=xx&xx=xx）
+ * encodeURIComponent把字符串作为 URI 组件进行编码
+ */
 export function param(data) {
   let url = ''
   for (var k in data) {
