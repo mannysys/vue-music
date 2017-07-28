@@ -1,3 +1,6 @@
+/**
+ * 定义操作DOM 的一些方法
+ */
 export function hasClass(el, className) {
   let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
   return reg.test(el.className)

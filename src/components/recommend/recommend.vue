@@ -1,35 +1,91 @@
 <template>
 	<div class="recommend">
-		<div class="recommend-content">
-			<div class="slider-wrapper">
-			</div>
-			<div class="recommend-list">
-				<h1 class="list-title">热门歌单推荐</h1>
-				<ul>
-				</ul>
-			</div>
-		</div>
+		<scroll ref="scroll" class="recommend-content" :data="discList">
+      <div>
+  			<div v-if="recommends.length" class="slider-wrapper">
+          <slider>
+            <div v-for="item in recommends">
+              <a :href="item.linkUrl">
+                <!-- 监听图片onload事件，当BScroll和fastclick 点击事件有冲突时，使用css属性来解决 -->
+                <img class="needsclick" @load="loadImage" :src="item.picUrl"/>
+              </a>
+            </div>
+          </slider>
+  			</div>
+  			<div class="recommend-list">
+  				<h1 class="list-title">热门歌单推荐</h1>
+  				<ul>
+            <li v-for="item in discList" class="item">
+              <div class="icon">
+                <img width="60" height="60" v-lazy="item.imgurl"/>
+              </div>
+              <div class="text">
+                <!-- v-html可以将html字符做转义 -->
+                <h2 class="name" v-html="item.creator.name"></h2>
+                <p class="desc" v-html="item.dissname"></p>
+              </div>
+            </li>
+  				</ul>
+  			</div>
+      </div>
+      <!-- 加载loading组件 -->
+      <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
+      </div>
+		</scroll>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
-	import { getRecommend } from 'api/recommend'
-	import { ERR_OK } from 'api/config'
+  import Loading from 'base/loading/loading'
+  import Scroll from 'base/scroll/scroll'
+  import Slider from 'base/slider/slider'
+  import {getRecommend, getDiscList} from 'api/recommend'
+  import {ERR_OK} from 'api/config'
 
- 	export default {
-  	created() {
-	 		this._getRecommend()
-		},
-		methods: {
-			_getRecommend() {
-				getRecommend().then((res) => {
-					if (res.code === ERR_OK) {
-						console.log(res.data.slider)
-					}
-				})
-			}
-		}
-	}
+  export default {
+    data() {
+      return {
+        recommends: [],
+        discList: []
+      }
+    },
+    created() {
+      // 获取推荐的歌曲轮播图数据
+      this._getRecommend()
+      // 获取歌单列表数据
+      this._getDiscList()
+    },
+    methods: {
+      _getRecommend() {
+        getRecommend().then((res) => {
+          if (res.code === ERR_OK) {
+            this.recommends = res.data.slider
+          }
+        })
+      },
+      _getDiscList() {
+        getDiscList().then((res) => {
+          if (res.code === ERR_OK) {
+            this.discList = res.data.list
+          }
+        })
+      },
+      loadImage() {
+        // 在this里定义变量this.checkLoaded 让这个逻辑执行一次
+        if (!this.checkLoaded) {
+          // 调用scroll组件内的 refresh方法
+          this.$refs.scroll.refresh()
+          this.checkLoaded = true
+        }
+      }
+    },
+    components: {
+      Slider,
+      Scroll,
+      Loading
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
