@@ -20,6 +20,10 @@
       data: {
         type: Array,
         default: null
+      },
+      listenScroll: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -36,6 +40,13 @@
           probeType: this.probeType,
           click: this.click
         })
+        // 监听滚动事件，派发一个pos参数
+        if (this.listenScroll) {
+          let me = this
+          this.scroll.on('scroll', (pos) => {
+            me.$emit('scroll', pos)
+          })
+        }
       },
       enable() {
         this.scroll && this.scroll.enable()
@@ -46,6 +57,13 @@
       // 重新计算高度
       refresh() {
         this.scroll && this.scroll.refresh()
+      },
+      // 滚到相应位置，调用BScroll扩展方法
+      scrollTo() {
+        this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      },
+      scrollToElement() {
+        this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
       }
     },
     watch: {

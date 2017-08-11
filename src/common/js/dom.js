@@ -15,7 +15,7 @@ export function addClass(el, className) {
   newClass.push(className)
   el.className = newClass.join(' ')
 }
-
+// 从 dom中获取我们定义的数据
 export function getData(el, name, val) {
   const prefix = 'data-'
   if (val) {
