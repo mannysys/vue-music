@@ -1,7 +1,8 @@
-import {getLyric} from 'api/song'
-import {ERR_OK} from 'api/config'
-import {Base64} from 'js-base64'
+// import {getLyric} from 'api/song'
+// import {ERR_OK} from 'api/config'
+// import {Base64} from 'js-base64'
 
+// 封装歌手详情页列表
 export default class Song {
   constructor({id, mid, singer, name, album, duration, image, url}) {
     this.id = id
@@ -14,24 +15,24 @@ export default class Song {
     this.url = url
   }
 
-  getLyric() {
-    if (this.lyric) {
-      return Promise.resolve(this.lyric)
-    }
-
-    return new Promise((resolve, reject) => {
-      getLyric(this.mid).then((res) => {
-        if (res.retcode === ERR_OK) {
-          this.lyric = Base64.decode(res.lyric)
-          resolve(this.lyric)
-        } else {
-          reject('no lyric')
-        }
-      })
-    })
-  }
+  // getLyric() {
+  //   if (this.lyric) {
+  //     return Promise.resolve(this.lyric)
+  //   }
+  //
+  //   return new Promise((resolve, reject) => {
+  //     getLyric(this.mid).then((res) => {
+  //       if (res.retcode === ERR_OK) {
+  //         this.lyric = Base64.decode(res.lyric)
+  //         resolve(this.lyric)
+  //       } else {
+  //         reject('no lyric')
+  //       }
+  //     })
+  //   })
+  // }
 }
-
+// 处理对象数据
 export function createSong(musicData) {
   return new Song({
     id: musicData.songid,
@@ -45,6 +46,7 @@ export function createSong(musicData) {
   })
 }
 
+// 处理一下数据显示格式
 function filterSinger(singer) {
   let ret = []
   if (!singer) {
