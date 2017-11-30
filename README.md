@@ -74,3 +74,9 @@ fastclick.attach(document.body)
 #指定版本安装jsonp
 "jsonp": "0.2.1"
 ```
+
+
+#
+调用数据接口都封装再api目录下
+抽象出的组件都放在base目录下
+

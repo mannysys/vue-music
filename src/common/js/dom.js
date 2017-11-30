@@ -24,6 +24,9 @@ export function getData(el, name, val) {
   return el.getAttribute(prefix + name)
 }
 
+/**
+ * 封装css动画样式前缀
+ */
 let elementStyle = document.createElement('div').style
 
 let vendor = (() => {
